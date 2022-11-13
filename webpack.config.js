@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FileListPlugin = require('./plugin/file-list-plugin.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const InlineFilePlugin = require('./plugin/inline-source-plugin.js')
+const CopyPlugin = require('./plugin/copy-plugin.js')
 // const UploadPlugin = require('./plugin/upload-plugin.js')
 module.exports = {
   mode: 'development',
@@ -81,6 +82,11 @@ module.exports = {
     new InlineFilePlugin({
       match: /\.(js|css)/
     }),
+    new CopyPlugin({
+      from: 'public',
+      to: 'css',
+      ignore: ['**/index.html']
+    })
     // new UploadPlugin({
     //   bucket: '',
     //   domain: '',
